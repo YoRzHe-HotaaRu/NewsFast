@@ -15,19 +15,19 @@ NewsFast is a modern web application that allows users to paste any article URL 
 
 ```
 ┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
-│   Web Frontend  │───▶│   FastAPI        │───▶│   Article       │
+│   Web Frontend  │--->│   FastAPI        │--->│   Article       │
 │   (HTML/JS/CSS) │    │   Backend        │    │   Scraper       │
 └─────────────────┘    └──────────────────┘    └─────────────────┘
                                 │                       │
                                 ▼                       ▼
                        ┌──────────────────┐    ┌─────────────────┐
-                       │   Text           │    │   AI             │
-                       │   Summarizer     │    │   Summarizer     │
+                       │   Text           │    │   AI            │
+                       │   Summarizer     │    │   Summarizer    │
                        └──────────────────┘    └─────────────────┘
                                 │                       │
                                 ▼                       ▼
                        ┌──────────────────┐    ┌─────────────────┐
-                       │   Extractive     │    │   OpenRouter     │
+                       │   Extractive     │    │   OpenRouter    │
                        │   Summary        │    │   API           │
                        └──────────────────┘    └─────────────────┘
 ```
