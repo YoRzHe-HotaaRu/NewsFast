@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewsFast - Article Summarizer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', path='/css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- App Header -->
+        <div class="app-header fade-in">
+            <h1 class="app-title">NewsFast</h1>
+            <p class="app-subtitle">Intelligent Article Summarization & Analysis</p>
+        </div>
+
+        <!-- Main Input Card -->
+        <div class="input-card fade-in">
+            <div class="input-header">
+                <h2><i class="fas fa-newspaper me-2"></i>Analyze Any Article</h2>
+                <p>Paste a URL to get instant insights, summaries, and key points</p>
+            </div>
+            <div class="input-body">
+                <form id="urlForm">
+                    <div class="mb-3">
+                        <label for="articleUrl" class="form-label">
+                            <i class="fas fa-link me-1"></i>Article URL
+                        </label>
+                        <input type="url" class="form-control form-control-lg" id="articleUrl"
+                               placeholder="https://example.com/article" required>
+                        <div class="form-text">
+                            <i class="fas fa-info-circle me-1"></i>
+                            Supports news articles, blog posts, research papers, and more
+                        </div>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg" id="summarizeBtn">
+                            <i class="fas fa-magic me-2"></i>
+                            <span class="btn-text">Summarize Article</span>
+                            <div class="spinner-border spinner-border-sm d-none ms-2" id="loadingSpinner"></div>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loadingState" class="loading-card d-none fade-in">
+            <div class="loading-spinner"></div>
+            <h3 class="loading-text">Processing Article</h3>
+            <p class="loading-subtext">Extracting content and generating intelligent summaries<span class="loading-dots"></span></p>
+        </div>
+
+        <!-- Results Section -->
+        <div id="resultsSection" class="d-none">
+            <div class="results-grid">
+                <!-- Original Article Info -->
+                <div class="result-card article-info fade-in">
+                    <div class="result-header">
+                        <i class="fas fa-file-alt fa-lg"></i>
+                        <h5>Original Article</h5>
+                    </div>
+                    <div class="result-body">
+                        <h3 class="article-title" id="articleTitle"></h3>
+                        <p class="article-meta" id="articleMeta"></p>
+                        <a href="#" target="_blank" id="articleLink" class="article-link">
+                            <i class="fas fa-external-link-alt me-1"></i>
+                            Read Original Article
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Extractive Summary -->
+                <div class="result-card extractive-summary fade-in">
+                    <div class="result-header">
+                        <i class="fas fa-highlighter fa-lg"></i>
+                        <h5>Key Points</h5>
+                    </div>
+                    <div class="result-body">
+                        <div id="extractiveSummary" class="summary-content"></div>
+                    </div>
+                </div>
+
+                <!-- Keywords -->
+                <div class="result-card keywords fade-in">
+                    <div class="result-header">
+                        <i class="fas fa-tags fa-lg"></i>
+                        <h5>Keywords</h5>
+                    </div>
+                    <div class="result-body">
+                        <div id="keywords" class="keywords-container"></div>
+                    </div>
+                </div>
+
+                <!-- AI Summary -->
+                <div class="result-card ai-summary fade-in">
+                    <div class="result-header">
+                        <i class="fas fa-robot fa-lg"></i>
+                        <h5>AI Summary</h5>
+                    </div>
+                    <div class="result-body">
+                        <div id="abstractiveSummary" class="summary-content"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons fade-in">
+                <button class="btn btn-secondary btn-lg" onclick="resetForm()">
+                    <i class="fas fa-redo me-2"></i>Summarize Another Article
+                </button>
+            </div>
+        </div>
+
+        <!-- Error State -->
+        <div id="errorState" class="error-card d-none fade-in">
+            <h4 class="error-title"><i class="fas fa-exclamation-triangle me-2"></i>Error</h4>
+            <p class="error-message" id="errorMessage"></p>
+        </div>
+
+        <!-- Features Section -->
+        <div class="features-section mt-5">
+            <div class="row text-center">
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <i class="fas fa-brain feature-icon"></i>
+                        <h4>AI-Powered</h4>
+                        <p>Advanced natural language processing for intelligent summaries</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <i class="fas fa-bolt feature-icon"></i>
+                        <h4>Lightning Fast</h4>
+                        <p>Get comprehensive analysis in seconds, not minutes</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <i class="fas fa-shield-alt feature-icon"></i>
+                        <h4>Privacy First</h4>
+                        <p>Your data is processed securely and never stored</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', path='/js/script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+# OpenRouter API Configuration
+OPENROUTER_API_KEY=paste_your_key_here
+
+# Get your API key from: https://openrouter.ai/
+# NewsFast uses OpenRouter for AI-powered abstractive summarization
